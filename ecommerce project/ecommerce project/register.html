@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="CSS/auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="form-container">
+    <form action="login.html" method="get">
+      <h2>Register</h2>
+
+      <!-- Username -->
+      <input type="text" placeholder="Username" required>
+
+      <!-- Email with validation -->
+      <input type="email" placeholder="Email" required>
+
+      <!-- Password with pattern -->
+      <input type="password" placeholder="Create Password" 
+        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$" 
+        title="Password must be at least 8 characters, include one letter, one number, and one special character." 
+        required>
+
+      <!-- Confirm Password -->
+      <input type="password" placeholder="Confirm Password" required>
+
+      <!-- Phone Number -->
+      <input type="tel" placeholder="Phone Number" 
+        pattern="[0-9]{10}" 
+        title="Enter a 10-digit phone number" 
+        required>
+
+      <!-- Address Dropdown -->
+      <select required>
+        <option value="">Select Address</option>
+        <option value="Kolkata, West Bengal">Kolkata, West Bengal</option>
+        <option value="Cuttack, Odisha">Cuttack, Odisha</option>
+        <option value="Bengaluru, Karnatak">Bengaluru, Karnataka</option>
+        <option value="Hyderabad, Telangana">Hyderabad, Telangana</option>Maharashtra
+        <option value="Mumbai, Maharashtra">Mumbai, Maharashtra</option>
+      </select>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn">Register</button>
+
+      <p class="text">Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
+</body>
+</html>

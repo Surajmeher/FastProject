@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="CSS/auth.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+</head>
+<style>
+  .notification-banner {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f44336; /* red for error */
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+    animation: slideDown 0.3s ease-in-out;
+  }
+
+  .notification-banner.success {
+    background-color: #4CAF50; /* green for success */
+  }
+
+  .notification-banner button {
+    background: white;
+    color: black;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translate(-50%, -30px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+  }
+</style>
+
+<body>
+  <div class="form-container">
+    <form action="index.html" method="get">
+      <h2>Login</h2>
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password"  pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"  required>
+      <button type="submit" class="btn">Login</button>
+      <p class="text">Don't have an account? <a href="register.html">Register</a></p>
+    </form>
+  </div>
+</body>
+<script>
+  function showNotification(message, type, redirect = null) {
+    const banner = document.createElement('div');
+    banner.className = `notification-banner ${type}`;
+    banner.innerHTML = `
+      <span>${message}</span>
+      <button onclick="this.parentElement.remove()">OK</button>
+    `;
+    document.body.appendChild(banner);
+
+    if (redirect) {
+      banner.querySelector('button').addEventListener('click', () => {
+        window.location.href = redirect;
+      });
+    }
+  }
+
+  document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const enteredEmail = document.querySelector('input[type="email"]').value;
+    const enteredPassword = document.querySelector('input[type="password"]').value;
+
+    const storedEmail = localStorage.getItem("userEmail");
+    const storedPassword = localStorage.getItem("userPassword");
+
+    if (enteredEmail === storedEmail && enteredPassword === storedPassword) {
+      showNotification("✅ Login Successful!", "success", "index.html");
+    } else {
+      showNotification("❌ Invalid email or password. Try again.", "error");
+    }
+  });
+</script>
+
+
+</html>

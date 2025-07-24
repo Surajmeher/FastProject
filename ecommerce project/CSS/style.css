@@ -532,5 +532,20 @@ ul{
 .newsletter-form .btn:hover {
   background: #563433;
 }
+.nav-items {
+    display: none;
+    flex-direction: column;
+}
+
+.show-nav {
+    display: flex;
+}
+
+@media (min-width: 1025px) {
+    .nav-items {
+        display: flex !important;
+        flex-direction: row;
+    }
+}
 
 

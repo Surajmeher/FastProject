@@ -1,4 +1,4 @@
-// Cart System
+//Cart System
 let cartItems = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <option value="low">Low to High</option>
     <option value="high">High to Low</option>
   `;
-  sortBox.style.margin = "20px 17px";
+  sortBox.style.margin = "20px 0";
   container.prepend(sortBox);
 
   sortBox.addEventListener("change", (e) => {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Scroll to Top Button
   const topBtn = document.createElement("button");
-  topBtn.innerText = "⬆ Top";
+  topBtn.innerText = "Top";
   topBtn.style.position = "fixed";
   topBtn.style.bottom = "30px";
   topBtn.style.right = "30px";
@@ -85,4 +85,27 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     topBtn.style.display = window.scrollY > 200 ? "block" : "none";
   });
+
+  function showModal(message, callback = null) {
+  const customModal = document.getElementById('customModal');
+  const modalMessage = document.getElementById('modalMessage');
+  const modalCloseButton = document.getElementById('modalCloseButton');
+
+  if (customModal && modalMessage && modalCloseButton) {
+    modalMessage.textContent = message;
+    customModal.classList.add('show');
+    modalCloseButton.onclick = () => {
+      customModal.classList.remove('show');
+      if (callback) {
+        callback();
+      }
+    };
+  } else {
+    // Fallback if modal elements are not found (e.g., if HTML isn't updated)
+    alert(message);
+    if (callback) {
+      callback();
+    }
+  }
+}
 });

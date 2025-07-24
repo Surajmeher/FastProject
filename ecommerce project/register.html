@@ -49,4 +49,25 @@
     </form>
   </div>
 </body>
+<script>
+  document.querySelector("form").addEventListener("submit", function (e) {
+    e.preventDefault(); // stop form from submitting immediately
+
+    const email = document.querySelector('input[type="email"]').value;
+    const password = document.querySelectorAll('input[type="password"]')[0].value;
+    const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
+
+    if (password !== confirmPassword) {
+      alert("⚠️ Passwords do not match!");
+      return;
+    }
+
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPassword", password);
+
+    alert("✅ Registration Successful! Redirecting to login...");
+    window.location.href = "login.html";
+  });
+</script>
 </html>
+
